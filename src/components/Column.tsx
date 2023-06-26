@@ -1,7 +1,7 @@
-import { ColumnContainer, ColumnTitle } from "../styles";
-
 import Card from "./Card";
 import AddNewItem from "./AddNewItem";
+import { addTask } from "../state/actions";
+import { ColumnContainer, ColumnTitle } from "../styles";
 import { useAppState } from "../state/AppStateContext";
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Column: React.FC<Props> = ({ id, text }) => {
-  const { getTasksByListId } = useAppState();
+  const { getTasksByListId, dispatch } = useAppState();
   const tasks = getTasksByListId(id);
   return (
     <ColumnContainer>
@@ -21,7 +21,7 @@ const Column: React.FC<Props> = ({ id, text }) => {
       <AddNewItem
         dark
         toggleButtonText="+ Add another task"
-        onAdd={console.log}
+        onAdd={(text) => dispatch(addTask(text, id))}
       />
     </ColumnContainer>
   );

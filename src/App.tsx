@@ -1,18 +1,22 @@
 import { AppContainer } from "./styles.ts";
 
 import Column from "./components/Column";
+import { addList } from "./state/actions.ts";
 import AddNewItem from "./components/AddNewItem";
 import { useAppState } from "./state/AppStateContext.tsx";
 
 const App: React.FC = () => {
-  const { lists } = useAppState();
+  const { lists, dispatch } = useAppState();
   return (
     <>
       <AppContainer>
         {lists.map((list) => (
           <Column text={list.text} key={list.id} id={list.id} />
         ))}
-        <AddNewItem toggleButtonText="+ Add another list" onAdd={console.log} />
+        <AddNewItem
+          toggleButtonText="+ Add another list"
+          onAdd={(text) => dispatch(addList(text))}
+        />
       </AppContainer>
     </>
   );
