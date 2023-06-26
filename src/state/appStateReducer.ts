@@ -2,7 +2,7 @@ import { nanoid } from "nanoid";
 
 import type { AppState } from "../interfaces";
 import type { Action } from "./interfaces.d.ts";
-import { findItemIndexById } from "../utils/arrayUtils";
+import { findItemIndexById, moveItem } from "../utils/arrayUtils";
 
 export const appStateReducer = (
   state: AppState,
@@ -24,6 +24,13 @@ export const appStateReducer = (
         id: nanoid(),
         text,
       });
+      break;
+    }
+    case "MOVE_LIST": {
+      const { draggedId, hoverId } = action.payload;
+      const dragIndex = findItemIndexById(state.lists, draggedId);
+      const hoverIndex = findItemIndexById(state.lists, hoverId);
+      state.lists = moveItem(state.lists, dragIndex, hoverIndex);
       break;
     }
   }

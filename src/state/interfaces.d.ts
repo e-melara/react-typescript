@@ -8,4 +8,12 @@ interface AddTaskAction {
   payload: { text: string; listId: string };
 }
 
-export type Action = AddListAction | AddTaskAction;
+interface MoveListAction {
+  type: "MOVE_LIST";
+  payload: {
+    draggedId: string;
+    hoverId: string;
+  };
+}
+
+export type Action = AddListAction | AddTaskAction | MoveListAction;
