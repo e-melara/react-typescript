@@ -33,5 +33,9 @@ export const appStateReducer = (
       state.lists = moveItem(state.lists, dragIndex, hoverIndex);
       break;
     }
+    case "SET_DRAGGED_ITEM": {
+      state.draggedItem = action.payload;
+      break;
+    }
   }
 };

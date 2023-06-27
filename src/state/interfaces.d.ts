@@ -16,4 +16,13 @@ interface MoveListAction {
   };
 }
 
-export type Action = AddListAction | AddTaskAction | MoveListAction;
+interface setDraggedItemAction {
+  type: "SET_DRAGGED_ITEM";
+  payload: DragItem | null;
+}
+
+export type Action =
+  | AddListAction
+  | AddTaskAction
+  | MoveListAction
+  | setDraggedItemAction;
