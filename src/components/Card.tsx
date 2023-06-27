@@ -5,7 +5,7 @@ interface Props {
   text: string;
 }
 
-const Card: React.FC<Props> = ({ id, text }) => {
+const Card: React.FC<Props> = ({ text }) => {
   return <CardContainer>{text}</CardContainer>;
 };
 

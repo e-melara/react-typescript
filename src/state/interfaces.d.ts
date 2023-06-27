@@ -16,4 +16,21 @@ interface MoveListAction {
   };
 }
 
-export type Action = AddListAction | AddTaskAction | MoveListAction;
+interface setDraggedItem {
+  type: "SET_DRAGGED_ITEM";
+  payload: DragItem | undefined;
+}
+
+export type ColumnDratItem = {
+  id: stirng;
+  text: string;
+  type: "COLUMN";
+};
+
+export type DragItem = ColumnDratItem;
+
+export type Action =
+  | AddListAction
+  | AddTaskAction
+  | MoveListAction
+  | setDraggedItem;

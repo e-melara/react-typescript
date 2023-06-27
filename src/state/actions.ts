@@ -1,4 +1,4 @@
-import { Action } from "./interfaces";
+import { Action, DragItem } from "./interfaces";
 
 export const addTask = (text: string, listId: string): Action => ({
   type: "ADD_TASK",
@@ -19,4 +19,9 @@ export const moveList = (draggedId: string, hoverId: string): Action => ({
     draggedId,
     hoverId,
   },
+});
+
+export const setDraggedItem = (draggedItem: DragItem | undefined): Action => ({
+  type: "SET_DRAGGED_ITEM",
+  payload: draggedItem,
 });
