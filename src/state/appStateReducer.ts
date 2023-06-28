@@ -37,5 +37,14 @@ export const appStateReducer = (
       state.draggedItem = action.payload;
       break;
     }
+    case "MOVE_TASK": {
+      const { dragIndex, hoveredItemId, sourceColumnId, targetColumnId } =
+        action.payload;
+      const sourceListIndex = findItemIndexById(state.lists, sourceColumnId);
+      const targetListIndex = findItemIndexById(state.lists, targetColumnId);
+      const item = state.lists[sourceListIndex].tasks.splice(dragIndex, 1)[0];
+      state.lists[targetListIndex].tasks.splice(hoveredItemId, 0, item);
+      break;
+    }
   }
 };

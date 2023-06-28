@@ -16,21 +16,39 @@ interface MoveListAction {
   };
 }
 
+interface MoveTaskAction {
+  type: "MOVE_TASK";
+  payload: {
+    dragIndex: number;
+    hoveredItemId: number;
+    sourceColumnId: string;
+    targetColumnId: string;
+  };
+}
+
 interface setDraggedItem {
   type: "SET_DRAGGED_ITEM";
   payload: DragItem | undefined;
 }
 
 export type ColumnDratItem = {
-  id: stirng;
+  id: string;
   text: string;
   type: "COLUMN";
 };
 
-export type DragItem = ColumnDratItem;
+export type CardDragItem = {
+  id: string;
+  columnId: string;
+  text: string;
+  type: "CARD";
+};
+
+export type DragItem = ColumnDratItem | CardDragItem;
 
 export type Action =
   | AddListAction
   | AddTaskAction
   | MoveListAction
-  | setDraggedItem;
+  | setDraggedItem
+  | MoveTaskAction;

@@ -25,3 +25,18 @@ export const setDraggedItem = (draggedItem: DragItem | undefined): Action => ({
   type: "SET_DRAGGED_ITEM",
   payload: draggedItem,
 });
+
+export const moveTask = (
+  dragIndex: number,
+  hoveredItemId: number,
+  sourceColumnId: string,
+  targetColumnId: string
+): Action => ({
+  type: "MOVE_TASK",
+  payload: {
+    dragIndex,
+    hoveredItemId,
+    sourceColumnId,
+    targetColumnId,
+  },
+});

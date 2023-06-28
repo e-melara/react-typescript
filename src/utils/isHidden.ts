@@ -4,10 +4,19 @@ interface Props {
   draggedItem: DragItem | undefined;
   itemType: string;
   id: string;
+  isPreview?: boolean;
 }
 
-export const isHidden = ({ draggedItem, id, itemType }: Props): boolean => {
+export const isHidden = ({
+  draggedItem,
+  id,
+  itemType,
+  isPreview,
+}: Props): boolean => {
   return Boolean(
-    draggedItem && draggedItem.type === itemType && draggedItem.id === id
+    !isPreview &&
+      draggedItem &&
+      draggedItem.type === itemType &&
+      draggedItem.id === id
   );
 };
