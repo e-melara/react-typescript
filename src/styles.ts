@@ -4,6 +4,10 @@ type AddItemButtonProps = {
   dark?: boolean;
 };
 
+interface DragPreviewContainerProps {
+  isHidden?: boolean;
+}
+
 export const AppContainer = styled.div`
   align-items: flex-start;
   background-color: #3179ba;
@@ -14,7 +18,10 @@ export const AppContainer = styled.div`
   width: 100%;
 `;
 
-export const ColumnContainer = styled.div`
+export const DragPreviewContainer = styled.div<DragPreviewContainerProps>`
+  opacity: ${(props) => (props.isHidden ? 0.3 : 1)};
+`;
+export const ColumnContainer = styled(DragPreviewContainer)`
   background-color: #ebecf0;
   width: 300px;
   min-height: 40px;
@@ -29,7 +36,7 @@ export const ColumnTitle = styled.div`
   font-weight: bold;
 `;
 
-export const CardContainer = styled.div`
+export const CardContainer = styled(DragPreviewContainer)`
   background-color: #fff;
   cursor: pointer;
   margin-bottom: 0.5rem;
@@ -80,4 +87,14 @@ export const NewItemInput = styled.input`
   margin-bottom: 0.5rem;
   padding: 0.5rem 1rem;
   width: 100%;
+`;
+
+export const CustomDragLayerContainer = styled.div`
+  height: 100%;
+  left: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
 `;

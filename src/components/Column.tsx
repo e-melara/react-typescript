@@ -4,6 +4,7 @@ import { throttle } from "throttle-debounce-ts";
 
 import Card from "./Card";
 import AddNewItem from "./AddNewItem";
+import { isHidden } from "../utils/isHidden";
 import { addTask, moveList } from "../state/actions";
 import { useItemDrag } from "../utils/useItemDrag";
 import { ColumnContainer, ColumnTitle } from "../styles";
@@ -38,7 +39,10 @@ const Column: React.FC<Props> = ({ id, text }) => {
   drag(drop(ref));
 
   return (
-    <ColumnContainer ref={ref}>
+    <ColumnContainer
+      ref={ref}
+      isHidden={isHidden({ id, itemType: "COLUMN", draggedItem })}
+    >
       <ColumnTitle>{text}</ColumnTitle>
       {tasks.map((task) => (
         <Card text={task.text} key={task.id} id={task.id} />
